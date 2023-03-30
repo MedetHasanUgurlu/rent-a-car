@@ -1,10 +1,10 @@
-package com.turkcell.rentacar.controller.impl;
+package com.turkcell.rentacar.api.impl;
 
 import com.turkcell.rentacar.business.ModelService;
 import com.turkcell.rentacar.business.dto.request.ModelCreateRequest;
 import com.turkcell.rentacar.business.dto.request.ModelUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.ModelResponse;
-import com.turkcell.rentacar.controller.ModelController;
+import com.turkcell.rentacar.api.ModelController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/models")
+@RequestMapping("/model")
 public class ModelControllerImp implements ModelController {
     private final ModelService service;
     @Override

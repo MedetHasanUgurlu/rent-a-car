@@ -1,10 +1,7 @@
-package com.turkcell.rentacar.controller;
+package com.turkcell.rentacar.api;
 
-import com.turkcell.rentacar.business.dto.request.BrandCreateRequest;
-import com.turkcell.rentacar.business.dto.request.BrandUpdateRequest;
 import com.turkcell.rentacar.business.dto.request.ModelCreateRequest;
 import com.turkcell.rentacar.business.dto.request.ModelUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.BrandResponse;
 import com.turkcell.rentacar.business.dto.response.ModelResponse;
 import org.springframework.http.ResponseEntity;
 

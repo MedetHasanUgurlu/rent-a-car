@@ -1,10 +1,10 @@
-package com.turkcell.rentacar.controller.impl;
+package com.turkcell.rentacar.api.impl;
 
 import com.turkcell.rentacar.business.BrandService;
 import com.turkcell.rentacar.business.dto.request.BrandCreateRequest;
 import com.turkcell.rentacar.business.dto.request.BrandUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.BrandResponse;
-import com.turkcell.rentacar.controller.BrandController;
+import com.turkcell.rentacar.api.BrandController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

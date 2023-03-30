@@ -1,4 +1,4 @@
-package com.turkcell.rentacar.controller;
+package com.turkcell.rentacar.api;
 
 import com.turkcell.rentacar.business.dto.request.BrandCreateRequest;
 import com.turkcell.rentacar.business.dto.request.BrandUpdateRequest;

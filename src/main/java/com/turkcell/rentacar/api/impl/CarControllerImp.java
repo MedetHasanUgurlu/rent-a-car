@@ -3,6 +3,7 @@ package com.turkcell.rentacar.api.impl;
 import com.turkcell.rentacar.api.CarController;
 import com.turkcell.rentacar.business.CarService;
 import com.turkcell.rentacar.business.dto.request.CarCreateRequest;
+import com.turkcell.rentacar.business.dto.request.CarStateRequest;
 import com.turkcell.rentacar.business.dto.request.CarUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.CarResponse;
 import lombok.RequiredArgsConstructor;
@@ -50,5 +51,29 @@ public class CarControllerImp implements CarController {
     public ResponseEntity updateCar(@PathVariable Long id,@RequestBody CarUpdateRequest carUpdateRequest) {
         service.updateCar(id,carUpdateRequest);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @Override
+    @GetMapping("/state")
+    public ResponseEntity<List<CarResponse>> getCarsByMaintenance(@RequestParam String state) {
+        return new ResponseEntity<>(service.findByState(state),HttpStatus.OK);
+    }
+
+    @Override
+    @PutMapping("/send-maintenance/{id}")
+    public ResponseEntity sendToMaintenance(@PathVariable Long id) {
+        service.sentToMaintance(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping("/a")
+    public ResponseEntity<List<CarResponse>> getCarsInAvailableOrRented(){
+        return new ResponseEntity<>(service.getCarsInRentedOrAvailable(),HttpStatus.OK);
+    }
+
+    @Override
+    @GetMapping("/param")
+    public ResponseEntity<List<CarResponse>> getCarsByStateCondition(@RequestParam(defaultValue = "false",required = false) Boolean isClicked) {
+        return new ResponseEntity<>(service.getCarsByStateCondition(isClicked),HttpStatus.OK);
     }
 }

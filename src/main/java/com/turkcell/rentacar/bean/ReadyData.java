@@ -7,11 +7,9 @@ import com.turkcell.rentacar.business.dto.request.BrandCreateRequest;
 import com.turkcell.rentacar.business.dto.request.CarCreateRequest;
 import com.turkcell.rentacar.business.dto.request.ModelCreateRequest;
 import com.turkcell.rentacar.entity.Brand;
-import com.turkcell.rentacar.entity.Model;
 import com.turkcell.rentacar.entity.enums.State;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,14 +47,22 @@ public class ReadyData {
                     .build();
 
             CarCreateRequest car2 = CarCreateRequest.builder()
-                    .state(State.MAINTANCE)
+                    .state(State.MAINTENANCE)
                     .plate("34-DP-475")
                     .dailyPrice(300)
                     .modelId(1L)
                     .modelYear(2018)
                     .build();
+            CarCreateRequest car3 = CarCreateRequest.builder()
+                    .state(State.AVAILABLE)
+                    .plate("34-DA-475")
+                    .dailyPrice(200)
+                    .modelId(2L)
+                    .modelYear(2022)
+                    .build();
 
 
+            carService.createCar(car3);
             carService.createCar(car2);
             carService.createCar(car1);
 

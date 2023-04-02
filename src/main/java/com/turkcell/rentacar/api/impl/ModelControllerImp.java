@@ -48,4 +48,5 @@ public class ModelControllerImp implements ModelController {
         service.deleteModelById(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
 }

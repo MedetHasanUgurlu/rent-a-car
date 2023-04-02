@@ -13,7 +13,8 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "brands")
-public class Brand {
+public class Brand
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,3 +26,10 @@ public class Brand {
 
 
 }
+
+/*
+* Arabalar bakıma (maintenance) gönderilebilmelidir.
+* Bakımdan gelen araba yeniden kiralanabilir duruma gelmelidir.
+* Zaten bakımda olan araba bakıma gönderilememez.
+* Kirada olan araba bakıma gönderilemez.
+* Bakımda olan araba araba listesinde görüntülenip görüntülenmeyeceğine kullanıcıdan bir parametre alarak gelmelidir veya gelmemelidir. */

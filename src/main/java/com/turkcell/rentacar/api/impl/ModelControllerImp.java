@@ -1,8 +1,8 @@
 package com.turkcell.rentacar.api.impl;
 
 import com.turkcell.rentacar.business.ModelService;
-import com.turkcell.rentacar.business.dto.request.ModelCreateRequest;
-import com.turkcell.rentacar.business.dto.request.ModelUpdateRequest;
+import com.turkcell.rentacar.business.dto.request.create.ModelCreateRequest;
+import com.turkcell.rentacar.business.dto.request.update.ModelUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.ModelResponse;
 import com.turkcell.rentacar.api.ModelController;
 import lombok.RequiredArgsConstructor;

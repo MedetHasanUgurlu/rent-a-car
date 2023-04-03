@@ -1,12 +1,10 @@
 package com.turkcell.rentacar.business.impl;
 
 import com.turkcell.rentacar.business.ModelService;
-import com.turkcell.rentacar.business.dto.request.ModelCreateRequest;
-import com.turkcell.rentacar.business.dto.request.ModelUpdateRequest;
+import com.turkcell.rentacar.business.dto.request.create.ModelCreateRequest;
+import com.turkcell.rentacar.business.dto.request.update.ModelUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.ModelResponse;
-import com.turkcell.rentacar.entity.Brand;
 import com.turkcell.rentacar.entity.Model;
-import com.turkcell.rentacar.repository.BrandRepository;
 import com.turkcell.rentacar.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

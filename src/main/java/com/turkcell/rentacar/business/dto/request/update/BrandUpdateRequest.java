@@ -1,5 +1,6 @@
-package com.turkcell.rentacar.business.dto.request;
+package com.turkcell.rentacar.business.dto.request.update;
 
+import com.turkcell.rentacar.business.dto.request.abstracts.BrandRequest;
 import lombok.*;
 
 @AllArgsConstructor

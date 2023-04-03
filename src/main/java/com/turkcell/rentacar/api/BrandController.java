@@ -1,7 +1,7 @@
 package com.turkcell.rentacar.api;
 
-import com.turkcell.rentacar.business.dto.request.BrandCreateRequest;
-import com.turkcell.rentacar.business.dto.request.BrandUpdateRequest;
+import com.turkcell.rentacar.business.dto.request.create.BrandCreateRequest;
+import com.turkcell.rentacar.business.dto.request.update.BrandUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.BrandResponse;
 import org.springframework.http.ResponseEntity;
 import java.util.List;

@@ -1,9 +1,8 @@
 package com.turkcell.rentacar.business;
 
-import com.turkcell.rentacar.business.dto.request.BrandCreateRequest;
-import com.turkcell.rentacar.business.dto.request.BrandUpdateRequest;
+import com.turkcell.rentacar.business.dto.request.create.BrandCreateRequest;
+import com.turkcell.rentacar.business.dto.request.update.BrandUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.BrandResponse;
-import com.turkcell.rentacar.entity.Brand;
 
 import java.util.List;
 

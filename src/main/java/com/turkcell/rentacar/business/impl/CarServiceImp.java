@@ -1,9 +1,9 @@
 package com.turkcell.rentacar.business.impl;
 
 import com.turkcell.rentacar.business.CarService;
-import com.turkcell.rentacar.business.dto.request.CarCreateRequest;
+import com.turkcell.rentacar.business.dto.request.create.CarCreateRequest;
 
-import com.turkcell.rentacar.business.dto.request.CarUpdateRequest;
+import com.turkcell.rentacar.business.dto.request.update.CarUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.CarResponse;
 import com.turkcell.rentacar.entity.Car;
 import com.turkcell.rentacar.entity.enums.State;
@@ -29,7 +29,7 @@ public class CarServiceImp implements CarService {
 
     @Override
     public CarResponse getCarById(Long id) {
-        return modelMapper.map(repository.findById(id).orElseThrow(),CarResponse.class);
+        return modelMapper.map(repository.findById(id).orElseThrow(() -> new RuntimeException("Car is not in DB.")),CarResponse.class);
     }
 
     @Override

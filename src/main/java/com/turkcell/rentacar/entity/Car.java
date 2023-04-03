@@ -1,9 +1,12 @@
 package com.turkcell.rentacar.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.turkcell.rentacar.entity.enums.State;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -23,5 +26,8 @@ public class Car {
     @ManyToOne
     @JsonManagedReference
     private Model model;
+    @OneToMany(mappedBy = "car")
+    @JsonBackReference
+    private List<Maintenance> maintenances;
 
 }

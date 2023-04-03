@@ -1,10 +1,8 @@
 package com.turkcell.rentacar.business;
 
-import com.turkcell.rentacar.business.dto.request.CarCreateRequest;
-import com.turkcell.rentacar.business.dto.request.CarStateRequest;
-import com.turkcell.rentacar.business.dto.request.CarUpdateRequest;
+import com.turkcell.rentacar.business.dto.request.create.CarCreateRequest;
+import com.turkcell.rentacar.business.dto.request.update.CarUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.CarResponse;
-import com.turkcell.rentacar.entity.enums.State;
 
 import java.util.List;
 public interface CarService {

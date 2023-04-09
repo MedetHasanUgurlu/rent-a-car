@@ -51,3 +51,5 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.0.4</version>
         </dependency>
+
+![img_1.png](img_1.png)

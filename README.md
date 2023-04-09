@@ -1,7 +1,9 @@
 # Rent A Car PROJECTS (TURKCELL)
-## "I have the high ground." Obi-Wan Kenobi
+#### "I have the high ground." 
 
-![img.png](img.png)
+###### Obi-Wan Kenobi
+
+
 ##### Swagger: http://localhost:8080/swagger-ui/index.html
 
    

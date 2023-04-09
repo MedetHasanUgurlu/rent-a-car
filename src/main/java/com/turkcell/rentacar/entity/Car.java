@@ -24,10 +24,10 @@ public class Car {
     @Enumerated(EnumType.STRING)
     private State state;
     @ManyToOne
-    @JsonManagedReference
     private Model model;
     @OneToMany(mappedBy = "car")
-    @JsonBackReference
     private List<Maintenance> maintenances;
+    @OneToMany(mappedBy = "car")
+    private List<Rental> rentals;
 
 }

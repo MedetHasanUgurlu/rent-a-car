@@ -12,4 +12,8 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance,Long> {
     @Query("select m from Maintenance m where m.isPaid=true")
     List<Maintenance> getIsPaidTrue();
 
+    Maintenance  findMaintenanceByCarIdAndIsCompletedFalse(Long id);
+    boolean  existsByCarIdAndIsCompletedIsFalse(Long carId);
+
+
 }

@@ -13,7 +13,6 @@ public class MaintenanceUpdateRequest extends MaintenanceRequest {
     private String complaint;
     private double price;
     private boolean isPaid;
-    private Long carId;
     private boolean isRepaired;
 
 }

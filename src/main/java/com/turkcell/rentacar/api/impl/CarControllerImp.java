@@ -21,9 +21,9 @@ public class CarControllerImp implements CarController {
 
     @Override
     @PostMapping
-    public ResponseEntity createCar(@RequestBody CarCreateRequest carCreateRequest) {
+    public ResponseEntity<Void> createCar(@RequestBody CarCreateRequest carCreateRequest) {
         service.createCar(carCreateRequest);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
@@ -34,45 +34,27 @@ public class CarControllerImp implements CarController {
 
     @Override
     @GetMapping
-    public ResponseEntity<List<CarResponse>> getCars() {
-        return new ResponseEntity<>(service.getCars(),HttpStatus.OK);
+    public ResponseEntity<List<CarResponse>> getCars(@RequestParam(defaultValue = "true") boolean includeMaintenance) {
+        return new ResponseEntity<>(service.getCars(includeMaintenance),HttpStatus.OK);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteCarById(@PathVariable Long id) {
+    public ResponseEntity<Void>  deleteCarById(@PathVariable Long id) {
         service.deleteCarById(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity updateCar(@PathVariable Long id,@RequestBody CarUpdateRequest carUpdateRequest) {
+    public ResponseEntity<Void>  updateCar(@PathVariable Long id,@RequestBody CarUpdateRequest carUpdateRequest) {
         service.updateCar(id,carUpdateRequest);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Override
-    @GetMapping("/state")
-    public ResponseEntity<List<CarResponse>> getCarsByMaintenance(@RequestParam String state) {
-        return new ResponseEntity<>(service.findByState(state),HttpStatus.OK);
-    }
 
-    @Override
-    @PutMapping("/send-maintenance/{id}")
-    public ResponseEntity sendToMaintenance(@PathVariable Long id) {
-        service.sentToMaintance(id);
-        return new ResponseEntity(HttpStatus.OK);
-    }
 
-    @GetMapping("/a")
-    public ResponseEntity<List<CarResponse>> getCarsInAvailableOrRented(){
-        return new ResponseEntity<>(service.getCarsInRentedOrAvailable(),HttpStatus.OK);
-    }
 
-    @Override
-    @GetMapping("/param")
-    public ResponseEntity<List<CarResponse>> getCarsByStateCondition(@RequestParam(defaultValue = "false",required = false) Boolean isClicked) {
-        return new ResponseEntity<>(service.getCarsByStateCondition(isClicked),HttpStatus.OK);
-    }
+
+
 }

@@ -9,8 +9,6 @@ import com.turkcell.rentacar.business.dto.response.getall.MaintenanceGetAllRespo
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +21,9 @@ public class MaintenanceControllerImp implements MaintenanceController {
     private final MaintenanceService maintenanceService;
     @Override
     @PostMapping
-    public ResponseEntity createMaintenance(@RequestBody MaintenanceCreateRequest maintenanceCreateRequest) {
+    public ResponseEntity<Void> createMaintenance(@RequestBody MaintenanceCreateRequest maintenanceCreateRequest) {
         maintenanceService.createMaintenance(maintenanceCreateRequest);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
@@ -36,21 +34,27 @@ public class MaintenanceControllerImp implements MaintenanceController {
 
     @Override
     @GetMapping
-    public ResponseEntity<List<MaintenanceGetAllResponse>> getAllMaintenance() {
+    public ResponseEntity<List<MaintenanceGetAllResponse>> getAllMaintenances() {
         return new ResponseEntity<>(maintenanceService.getAllMaintenance(),HttpStatus.OK);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteMaintenance(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteMaintenance(@PathVariable Long id) {
         maintenanceService.deleteMaintenanceById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity updateMaintenance(@PathVariable Long id,@RequestBody MaintenanceUpdateRequest maintenanceUpdateRequest) {
+    public ResponseEntity<Void> updateMaintenance(@PathVariable Long id,@RequestBody MaintenanceUpdateRequest maintenanceUpdateRequest) {
         maintenanceService.updateMaintenance(id,maintenanceUpdateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    @GetMapping("/return")
+    public ResponseEntity<MaintenanceGetResponse> returnCarFromMaintenance(@RequestParam(required = false) Long carId) {
+        return new ResponseEntity<>(maintenanceService.returnCarFromMaintenance(carId),HttpStatus.OK);
     }
 }

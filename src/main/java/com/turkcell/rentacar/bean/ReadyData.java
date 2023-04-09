@@ -21,7 +21,7 @@ public class ReadyData {
     private final ModelMapper modelMapper;
     @Bean
     CommandLineRunner commandLineRunner(BrandService brandservice, ModelService modelService, CarService carService){
-        return (args) -> {
+        return args -> {
             Brand mercedes = Brand.builder().name("Mercedes").build();
             Brand volvo = Brand.builder().name("Volvo").build();
             Brand toyota = Brand.builder().name("Toyota").build();
@@ -39,7 +39,6 @@ public class ReadyData {
 
 
             CarCreateRequest car1 = CarCreateRequest.builder()
-                    .state(State.RENTED)
                     .plate("76-DP-475")
                     .dailyPrice(5000)
                     .modelId(3L)
@@ -47,14 +46,12 @@ public class ReadyData {
                     .build();
 
             CarCreateRequest car2 = CarCreateRequest.builder()
-                    .state(State.MAINTENANCE)
                     .plate("34-DP-475")
                     .dailyPrice(300)
                     .modelId(1L)
                     .modelYear(2018)
                     .build();
             CarCreateRequest car3 = CarCreateRequest.builder()
-                    .state(State.AVAILABLE)
                     .plate("34-DA-475")
                     .dailyPrice(200)
                     .modelId(2L)
@@ -65,6 +62,9 @@ public class ReadyData {
             carService.createCar(car3);
             carService.createCar(car2);
             carService.createCar(car1);
+            carService.changeStatus(1l,State.AVAILABLE);
+            carService.changeStatus(2l,State.RENTED);
+            carService.changeStatus(3l,State.MAINTENANCE);
 
 
 

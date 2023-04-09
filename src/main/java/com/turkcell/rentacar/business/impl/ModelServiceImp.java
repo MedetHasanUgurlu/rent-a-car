@@ -17,7 +17,6 @@ import java.util.List;
 public class ModelServiceImp implements ModelService{
     private final ModelMapper modelMapper;
     private final ModelRepository modelRepository;
-    //private final BrandRepository brandRepository;
 
 
     @Override
@@ -25,13 +24,6 @@ public class ModelServiceImp implements ModelService{
         Model model = modelMapper.map(modelCreateRequest, Model.class);
         model.setId(0l);
         modelRepository.save(model);
-        /* Long way
-        Brand brand = brandRepository.findById(modelCreateRequest.getBrandId()).orElseThrow();
-        Model model = new Model();
-        model.setBrand(brand);
-        model.setName(modelCreateRequest.getName());
-        modelRepository.save(model);
-        */
 
 
     }
@@ -51,6 +43,7 @@ public class ModelServiceImp implements ModelService{
         Model model = modelMapper.map(modelUpdateRequest,Model.class);
         model.setId(id);
         modelRepository.save(model);
+
     }
 
     @Override

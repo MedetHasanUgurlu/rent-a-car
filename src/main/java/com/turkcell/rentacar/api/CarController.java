@@ -8,13 +8,12 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface CarController {
-    ResponseEntity createCar(CarCreateRequest carCreateRequest);
+    ResponseEntity<Void> createCar(CarCreateRequest carCreateRequest);
     ResponseEntity<CarResponse> getCarById(Long id);
-    ResponseEntity<List<CarResponse>> getCars();
-    ResponseEntity deleteCarById(Long id);
-    ResponseEntity updateCar(Long id, CarUpdateRequest carUpdateRequest);
-    ResponseEntity<List<CarResponse>> getCarsByMaintenance(String state);
-    ResponseEntity sendToMaintenance(Long id);
-    ResponseEntity<List<CarResponse>> getCarsByStateCondition(Boolean isClicked);
+    ResponseEntity<List<CarResponse>> getCars(boolean includeMaintenance);
+    ResponseEntity<Void> deleteCarById(Long id);
+    ResponseEntity<Void> updateCar(Long id, CarUpdateRequest carUpdateRequest);
+
+
 
 }

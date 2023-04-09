@@ -7,9 +7,10 @@ import com.turkcell.rentacar.business.dto.response.getall.MaintenanceGetAllRespo
 import org.springframework.http.ResponseEntity;
 import java.util.List;
 public interface MaintenanceController {
-    ResponseEntity createMaintenance(MaintenanceCreateRequest maintenanceCreateRequest);
+    ResponseEntity<Void> createMaintenance(MaintenanceCreateRequest maintenanceCreateRequest);
     ResponseEntity<MaintenanceGetResponse> getMaintenanceById(Long id);
-    ResponseEntity<List<MaintenanceGetAllResponse>> getAllMaintenance();
-    ResponseEntity deleteMaintenance(Long id);
-    ResponseEntity updateMaintenance(Long id,MaintenanceUpdateRequest maintenanceUpdateRequest);
+    ResponseEntity<List<MaintenanceGetAllResponse>> getAllMaintenances();
+    ResponseEntity<Void> deleteMaintenance(Long id);
+    ResponseEntity<Void> updateMaintenance(Long id,MaintenanceUpdateRequest maintenanceUpdateRequest);
+    ResponseEntity<MaintenanceGetResponse> returnCarFromMaintenance(Long carId);
 }

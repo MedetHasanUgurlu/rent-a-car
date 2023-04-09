@@ -11,6 +11,8 @@ public interface MaintenanceService {
     List<MaintenanceGetAllResponse> getAllMaintenance();
     void updateMaintenance(Long id, MaintenanceUpdateRequest request);
     void deleteMaintenanceById(Long id);
+    MaintenanceGetResponse returnCarFromMaintenance(Long carId);
+
 
 
 }

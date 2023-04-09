@@ -1,6 +1,5 @@
 package com.turkcell.rentacar.business.dto.request.create;
 
-
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,10 +7,6 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class CarCreateRequest {
+public class RentalCreateRequest {
 
-    private int modelYear;
-    private String plate;
-    private double dailyPrice;
-    private Long modelId;
 }

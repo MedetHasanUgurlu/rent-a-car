@@ -20,7 +20,7 @@ public class Brand
     private Long id;
     private String name;
     @OneToMany(mappedBy = "brand")
-    @JsonBackReference
+   // @JsonBackReference
     private List<Model> modelList;
 
 

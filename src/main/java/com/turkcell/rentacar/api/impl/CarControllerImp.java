@@ -4,7 +4,7 @@ import com.turkcell.rentacar.api.CarController;
 import com.turkcell.rentacar.business.CarService;
 import com.turkcell.rentacar.business.dto.request.create.CarCreateRequest;
 import com.turkcell.rentacar.business.dto.request.update.CarUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.CarResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.CarResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

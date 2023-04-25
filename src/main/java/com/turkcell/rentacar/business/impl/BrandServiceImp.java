@@ -4,7 +4,10 @@ import com.turkcell.rentacar.business.BrandService;
 import com.turkcell.rentacar.business.dto.request.create.BrandCreateRequest;
 import com.turkcell.rentacar.business.dto.request.abstracts.BrandRequest;
 import com.turkcell.rentacar.business.dto.request.update.BrandUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.BrandResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.BrandResponse;
+import com.turkcell.rentacar.business.rules.BrandBusinessRules;
+import com.turkcell.rentacar.common.constants.Messages;
+import com.turkcell.rentacar.core.exceptionnew.exceptions.BusinessException;
 import com.turkcell.rentacar.entity.Brand;
 import com.turkcell.rentacar.repository.BrandRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +21,7 @@ import java.util.List;
 public class BrandServiceImp implements BrandService {
     private final BrandRepository repository;
     private final ModelMapper modelMapper;
+    private final BrandBusinessRules rules;
 
     public Brand requestToEntity(BrandRequest brandRequest){
         return modelMapper.map(brandRequest,Brand.class);
@@ -29,19 +33,20 @@ public class BrandServiceImp implements BrandService {
 
     @Override
     public void createBrand(BrandCreateRequest request) {
+        rules.checkBrandNameExist(request.getName());
         repository.save(requestToEntity(request));
     }
 
     @Override
     public BrandResponse getBrand(Long id) {
-        return entityToResponse(repository.findById(id).orElseThrow());
+        return entityToResponse(repository.findById(id).orElseThrow(()->new BusinessException(Messages.Brand.NotExists)));
     }
 
     @Override
     public List<BrandResponse> getBrands() {
         List<Brand> brands = repository.findAll();
-        List<BrandResponse> responses = brands.stream().map(brand -> entityToResponse(brand)).toList();
-        return responses;
+        return brands.stream().map(this::entityToResponse).toList();
+
     }
 
     @Override
@@ -53,6 +58,7 @@ public class BrandServiceImp implements BrandService {
 
     @Override
     public void deleteBrand(Long id) {
+        rules.checkEntityExist(id);
         repository.deleteById(id);
     }
 }

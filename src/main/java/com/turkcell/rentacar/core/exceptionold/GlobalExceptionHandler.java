@@ -1,7 +1,7 @@
-package com.turkcell.rentacar.exception;
+package com.turkcell.rentacar.core.exceptionold;
 
-import com.turkcell.rentacar.constants.ExceptionConstant;
-import com.turkcell.rentacar.exception.exceptions.ResourceNotFoundException;
+import com.turkcell.rentacar.common.constants.ExceptionConstant;
+import com.turkcell.rentacar.core.exceptionold.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,9 +11,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.time.LocalDateTime;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
+/*
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorDetails> handleGlobalException(Exception exception,WebRequest webRequest){
         ErrorDetails errorDetails = ErrorDetails.builder()
@@ -36,4 +36,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
+
+    */
+
 }

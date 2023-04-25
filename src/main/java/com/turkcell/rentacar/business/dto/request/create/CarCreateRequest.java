@@ -9,9 +9,9 @@ import lombok.*;
 @Setter
 @Builder
 public class CarCreateRequest {
-
+    private Long modelId;
     private int modelYear;
     private String plate;
     private double dailyPrice;
-    private Long modelId;
+
 }

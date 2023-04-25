@@ -1,6 +1,7 @@
 package com.turkcell.rentacar.business.dto.request.create;
 
 
+import com.turkcell.rentacar.business.dto.request.abstracts.PaymentRequest;
 import com.turkcell.rentacar.business.dto.request.abstracts.RentalRequest;
 import lombok.*;
 
@@ -10,11 +11,12 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class RentalCreateRequest extends RentalRequest {
+public class RentalCreateRequest implements RentalRequest {
 
     private Long  carId;
     private double dailyPrice;
     private int rentedDays;
+    private PaymentRequest paymentRequest;
 
 
 }

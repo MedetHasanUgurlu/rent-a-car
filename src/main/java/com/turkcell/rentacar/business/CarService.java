@@ -2,7 +2,7 @@ package com.turkcell.rentacar.business;
 
 import com.turkcell.rentacar.business.dto.request.create.CarCreateRequest;
 import com.turkcell.rentacar.business.dto.request.update.CarUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.CarResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.CarResponse;
 import com.turkcell.rentacar.entity.enums.State;
 
 import java.util.List;

@@ -20,7 +20,8 @@ public class Model {
     private Long id;
     private String name;
     @ManyToOne
-    @JsonManagedReference
+
+    //@JsonManagedReference
     private Brand brand;
     @OneToMany(mappedBy = "model")
     @JsonBackReference

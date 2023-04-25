@@ -3,7 +3,8 @@ package com.turkcell.rentacar.business.impl;
 import com.turkcell.rentacar.business.ModelService;
 import com.turkcell.rentacar.business.dto.request.create.ModelCreateRequest;
 import com.turkcell.rentacar.business.dto.request.update.ModelUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.ModelResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.ModelResponse;
+import com.turkcell.rentacar.business.rules.ModelBusinessRules;
 import com.turkcell.rentacar.entity.Model;
 import com.turkcell.rentacar.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +18,14 @@ import java.util.List;
 public class ModelServiceImp implements ModelService{
     private final ModelMapper modelMapper;
     private final ModelRepository modelRepository;
+    private final ModelBusinessRules rules;
 
 
     @Override
     public void createModel(ModelCreateRequest modelCreateRequest) {
         Model model = modelMapper.map(modelCreateRequest, Model.class);
-        model.setId(0l);
+        rules.checkModelNameExist(model.getName());
+        model.setId(0L);
         modelRepository.save(model);
 
 
@@ -30,7 +33,8 @@ public class ModelServiceImp implements ModelService{
 
     @Override
     public ModelResponse getModelById(Long id) {
-        return modelMapper.map(modelRepository.findById(id).orElseThrow(), ModelResponse.class);
+        rules.checkEntityExist(id);
+        return modelMapper.map(modelRepository.findById(id).get(), ModelResponse.class);
     }
 
     @Override
@@ -40,6 +44,7 @@ public class ModelServiceImp implements ModelService{
 
     @Override
     public void updateModel(Long id, ModelUpdateRequest modelUpdateRequest) {
+        rules.checkEntityExist(id);
         Model model = modelMapper.map(modelUpdateRequest,Model.class);
         model.setId(id);
         modelRepository.save(model);
@@ -48,6 +53,7 @@ public class ModelServiceImp implements ModelService{
 
     @Override
     public void deleteModelById(Long id) {
+        rules.checkEntityExist(id);
         modelRepository.deleteById(id);
     }
 }

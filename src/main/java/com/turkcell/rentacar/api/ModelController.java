@@ -2,7 +2,7 @@ package com.turkcell.rentacar.api;
 
 import com.turkcell.rentacar.business.dto.request.create.ModelCreateRequest;
 import com.turkcell.rentacar.business.dto.request.update.ModelUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.ModelResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.ModelResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

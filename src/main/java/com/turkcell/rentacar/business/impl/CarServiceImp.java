@@ -4,10 +4,11 @@ import com.turkcell.rentacar.business.CarService;
 import com.turkcell.rentacar.business.dto.request.create.CarCreateRequest;
 
 import com.turkcell.rentacar.business.dto.request.update.CarUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.CarResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.CarResponse;
+import com.turkcell.rentacar.business.rules.CarBusinessRules;
 import com.turkcell.rentacar.entity.Car;
 import com.turkcell.rentacar.entity.enums.State;
-import com.turkcell.rentacar.exception.exceptions.ResourceNotFoundException;
+import com.turkcell.rentacar.core.exceptionold.exceptions.ResourceNotFoundException;
 import com.turkcell.rentacar.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,17 +20,18 @@ import java.util.List;
 public class CarServiceImp implements CarService {
     private final ModelMapper modelMapper;
     private final CarRepository repository;
+    private final CarBusinessRules rules;
     @Override
     public void createCar(CarCreateRequest carCreateRequest) {
         Car car = modelMapper.map(carCreateRequest,Car.class);
         car.setState(State.AVAILABLE);
-        car.setId(0l);
+        car.setId(0L);
         repository.save(car);
     }
 
     @Override
     public CarResponse getCarById(Long id) {
-        checkCarExist(id);
+        rules.checkEntityExist(id);
         return modelMapper.map(repository.findById(id).orElseThrow(),CarResponse.class);
     }
 
@@ -43,7 +45,7 @@ public class CarServiceImp implements CarService {
 
     @Override
     public void updateCar(Long id, CarUpdateRequest carUpdateRequest) {
-        checkCarExist(id);
+        rules.checkEntityExist(id);
         Car car = modelMapper.map(carUpdateRequest,Car.class);
         car.setId(id);
         repository.save(car);
@@ -51,21 +53,18 @@ public class CarServiceImp implements CarService {
 
     @Override
     public void deleteCarById(Long id) {
-        checkCarExist(id);
+        rules.checkEntityExist(id);
         repository.deleteById(id);
     }
 
     @Override
     public void changeStatus(Long id, State state) {
-        checkCarExist(id);
+        rules.checkEntityExist(id);
         Car car = repository.findById(id).orElseThrow();
+        car.setId(id);
         car.setState(state);
         repository.save(car);
     }
 
-    public void checkCarExist(Long id){
-        if(!repository.existsById(id)){
-            throw new ResourceNotFoundException("Car",id);
-        }
-    }
+
 }

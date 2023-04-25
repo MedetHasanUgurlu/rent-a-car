@@ -3,8 +3,9 @@ package com.turkcell.rentacar.api.impl;
 import com.turkcell.rentacar.business.ModelService;
 import com.turkcell.rentacar.business.dto.request.create.ModelCreateRequest;
 import com.turkcell.rentacar.business.dto.request.update.ModelUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.ModelResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.ModelResponse;
 import com.turkcell.rentacar.api.ModelController;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ public class ModelControllerImp implements ModelController {
     private final ModelService service;
     @Override
     @PostMapping
-    public ResponseEntity createModel(@RequestBody ModelCreateRequest request) {
+    public ResponseEntity<Void> createModel(@RequestBody @Valid ModelCreateRequest request) {
         service.createModel(request);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
@@ -37,16 +38,16 @@ public class ModelControllerImp implements ModelController {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity updateModel(@PathVariable Long id,@RequestBody ModelUpdateRequest modelUpdateRequest) {
+    public ResponseEntity<Void> updateModel(@PathVariable Long id,@RequestBody @Valid ModelUpdateRequest modelUpdateRequest) {
         service.updateModel(id, modelUpdateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteModelById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteModelById(@PathVariable Long id) {
         service.deleteModelById(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

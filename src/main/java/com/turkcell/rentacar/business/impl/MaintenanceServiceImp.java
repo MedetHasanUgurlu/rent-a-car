@@ -10,7 +10,7 @@ import com.turkcell.rentacar.business.dto.response.getall.MaintenanceGetAllRespo
 import com.turkcell.rentacar.business.dto.response.get.MaintenanceGetResponse;
 import com.turkcell.rentacar.entity.Maintenance;
 import com.turkcell.rentacar.entity.enums.State;
-import com.turkcell.rentacar.exception.exceptions.ResourceNotFoundException;
+import com.turkcell.rentacar.core.exceptionold.exceptions.ResourceNotFoundException;
 import com.turkcell.rentacar.repository.MaintenanceRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -91,7 +91,7 @@ public class MaintenanceServiceImp implements MaintenanceService {
 
     void checkMaintenanceExist(Long id){
         if(!repository.findById(id).isPresent()){
-            throw new ResourceNotFoundException("Maintenance",id);
+            // throw new ResourceNotFoundException("Maintenance",id);
         }
     }
 
@@ -104,7 +104,7 @@ public class MaintenanceServiceImp implements MaintenanceService {
     }
     public void checkCarForReturn(Long carId){
         if(!repository.existsByCarIdAndIsCompletedIsFalse(carId)){
-            throw new ResourceNotFoundException("Maintenance",carId);
+            //throw new ResourceNotFoundException("Maintenance",carId);
         }
     }
     public void beforeDelete(Long id){

@@ -1,4 +1,4 @@
-package com.turkcell.rentacar.business.dto.response;
+package com.turkcell.rentacar.business.dto.response.abstracts;
 
 import com.turkcell.rentacar.entity.enums.State;
 import lombok.*;

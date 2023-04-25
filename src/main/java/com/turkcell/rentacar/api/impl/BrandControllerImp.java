@@ -3,8 +3,9 @@ package com.turkcell.rentacar.api.impl;
 import com.turkcell.rentacar.business.BrandService;
 import com.turkcell.rentacar.business.dto.request.create.BrandCreateRequest;
 import com.turkcell.rentacar.business.dto.request.update.BrandUpdateRequest;
-import com.turkcell.rentacar.business.dto.response.BrandResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.BrandResponse;
 import com.turkcell.rentacar.api.BrandController;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,9 @@ public class BrandControllerImp implements BrandController {
 
     @Override
     @PostMapping
-    public ResponseEntity createBrand(@RequestBody BrandCreateRequest request) {
+    public ResponseEntity<Void> createBrand(@RequestBody @Valid BrandCreateRequest request) {
         service.createBrand(request);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
@@ -39,15 +40,15 @@ public class BrandControllerImp implements BrandController {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity updateBrand(@PathVariable Long id, @RequestBody BrandUpdateRequest brandUpdateRequest) {
+    public ResponseEntity<Void> updateBrand(@PathVariable Long id, @RequestBody @Valid BrandUpdateRequest brandUpdateRequest) {
         service.updateBrand(id,brandUpdateRequest);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteBrandById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteBrandById(@PathVariable Long id) {
         service.deleteBrand(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

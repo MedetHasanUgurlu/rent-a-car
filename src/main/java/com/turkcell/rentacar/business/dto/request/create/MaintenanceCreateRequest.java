@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class MaintenanceCreateRequest extends MaintenanceRequest {
+public class MaintenanceCreateRequest implements MaintenanceRequest {
 
     private String complaint;
     private double price;

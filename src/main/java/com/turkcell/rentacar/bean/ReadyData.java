@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class ReadyData {
-
+    /*
     private final ModelMapper modelMapper;
     @Bean
     CommandLineRunner commandLineRunner(BrandService brandservice, ModelService modelService, CarService carService){
@@ -65,13 +65,8 @@ public class ReadyData {
             carService.changeStatus(1l,State.AVAILABLE);
             carService.changeStatus(2l,State.RENTED);
             carService.changeStatus(3l,State.MAINTENANCE);
-
-
-
-
-
-
-
         };
     }
+    */
+
 }

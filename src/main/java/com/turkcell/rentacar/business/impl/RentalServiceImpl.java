@@ -2,15 +2,17 @@ package com.turkcell.rentacar.business.impl;
 
 import com.sun.jdi.request.InvalidRequestStateException;
 import com.turkcell.rentacar.business.CarService;
+import com.turkcell.rentacar.business.PaymentService;
 import com.turkcell.rentacar.business.RentalService;
 import com.turkcell.rentacar.business.dto.request.abstracts.RentalRequest;
 import com.turkcell.rentacar.business.dto.request.create.RentalCreateRequest;
 import com.turkcell.rentacar.business.dto.request.update.RentalUpdateRequest;
 import com.turkcell.rentacar.business.dto.response.get.RentalGetResponse;
 import com.turkcell.rentacar.business.dto.response.getall.RentalGetAllResponse;
+import com.turkcell.rentacar.common.dto.RentalPaymentCreateRequest;
 import com.turkcell.rentacar.entity.Rental;
 import com.turkcell.rentacar.entity.enums.State;
-import com.turkcell.rentacar.exception.exceptions.ResourceNotFoundException;
+import com.turkcell.rentacar.core.exceptionold.exceptions.ResourceNotFoundException;
 import com.turkcell.rentacar.repository.RentalRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,6 +26,7 @@ public class RentalServiceImpl implements RentalService {
     private final RentalRepository repository;
     private final ModelMapper modelMapper;
     private final CarService carService;
+    private final PaymentService paymentService;
 
     Rental requestToEntity(RentalRequest rentalRequest){
         return modelMapper.map(rentalRequest,Rental.class);
@@ -41,6 +44,9 @@ public class RentalServiceImpl implements RentalService {
         rental.setId(0l);
         rental.setStartDate(LocalDateTime.now());
         rental.setTotalPrice(rental.getDailyPrice()*rental.getRentedDays());
+        RentalPaymentCreateRequest paymentCreateRequest = modelMapper.map(request.getPaymentRequest(),RentalPaymentCreateRequest.class);
+        paymentCreateRequest.setPrice(rental.getTotalPrice());
+        paymentService.payRent(paymentCreateRequest);
         carService.changeStatus(request.getCarId(),State.RENTED);
         repository.save(rental);
     }
@@ -71,7 +77,7 @@ public class RentalServiceImpl implements RentalService {
 
     @Override
     public List<RentalGetAllResponse> getAll() {
-        return repository.findAll().stream().map(rental -> entityToGetAllResponse(rental)).toList();
+        return repository.findAll().stream().map(this::entityToGetAllResponse).toList();
     }
 
     @Override
@@ -84,18 +90,18 @@ public class RentalServiceImpl implements RentalService {
     }
 
     private void checkRentalExist(Long id){
-        if (!repository.findById(id).isPresent()) {
-            throw new ResourceNotFoundException("Rental",id);
+        if (repository.findById(id).isEmpty()) {
+            // throw new ResourceNotFoundException("Rental",id);
         }
     }
     private void checkCarIdExist(Long carId){
         if(!repository.existsByCarId(carId)){
-            throw new ResourceNotFoundException("Rental",carId);
+            // throw new ResourceNotFoundException("Rental",carId);
         }
     }
     private void checkCarForAvailable(Long carId){
         if(carService.getCarById(carId).getState() != State.AVAILABLE){
-            throw new ResourceNotFoundException("Car",carId);
+            //  throw new ResourceNotFoundException("Car",carId);
         }
     }
     private void forDeleteProcess(Long carId){

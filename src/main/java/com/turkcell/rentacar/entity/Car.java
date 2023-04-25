@@ -1,7 +1,6 @@
 package com.turkcell.rentacar.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import com.turkcell.rentacar.entity.enums.State;
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,6 @@
 package com.turkcell.rentacar.business.dto.response.get;
 
-import com.turkcell.rentacar.business.dto.response.MaintenanceResponse;
+import com.turkcell.rentacar.business.dto.response.abstracts.MaintenanceResponse;
 import lombok.*;
 
 import java.time.LocalDateTime;

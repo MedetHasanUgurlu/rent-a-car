@@ -1,4 +1,4 @@
 package com.turkcell.rentacar.business.dto.request.abstracts;
 
-public abstract class ModelRequest {
+public interface ModelRequest {
 }

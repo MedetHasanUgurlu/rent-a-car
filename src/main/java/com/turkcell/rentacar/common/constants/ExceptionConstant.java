@@ -1,4 +1,4 @@
-package com.turkcell.rentacar.constants;
+package com.turkcell.rentacar.common.constants;
 
 public class ExceptionConstant {
     public static final String ENTITY_NOT_FOUND = "ENTITY_NOT_FOUND";

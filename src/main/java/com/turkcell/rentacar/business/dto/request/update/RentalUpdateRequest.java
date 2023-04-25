@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class RentalUpdateRequest extends RentalRequest {
+public class RentalUpdateRequest implements RentalRequest {
 
     private double dailyPrice;
     private int rentedDays;

@@ -1,4 +1,4 @@
-package com.turkcell.rentacar.business.dto.response;
+package com.turkcell.rentacar.business.dto.response.abstracts;
 
 import lombok.*;
 
